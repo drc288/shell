@@ -19,6 +19,10 @@ void print_line(char *str);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
+int _atoi(char *s);
+void print_number(int n);
+void _puts(char *str);
+int _putchar(char c);
 
 
 /* ARGC | ARGV | FREE | EXEC | ERROR */
@@ -30,7 +34,10 @@ void *interactive(char *interactive_str, char *line);
 char *create_path_extension(char *cmd, char **argv, int argc);
 char *validate_access(char *cmd, char*tokenizer ,char **argv, int argc);
 char *get_route_bin(char *path, char *token);
+void run_command(char **argv_command, int argc, int bash_count);
+void create_process_to_execute(char **argv_command, int argc, int bash_count);
 char *get_path();
+void sys_error(char **argv, int count, char *error);
 
 
 #endif

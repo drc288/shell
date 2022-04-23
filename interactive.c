@@ -8,13 +8,12 @@
 void *interactive(char *interactive_str, char *line)
 {
     char **argument_variable = NULL;
-    int len_characters = 0, argument_count = 0;
+    int len_characters = 0, argument_count = 0, bash_count = 1;
     size_t line_size = 0;
 
     while (EOF)
     {
         print_line(interactive_str);
-
         // clean standar input
         fflush(stdin);
         // Create len charecters and put data in &line
@@ -41,20 +40,13 @@ void *interactive(char *interactive_str, char *line)
         if (argument_count != 0)
         {
             argument_variable[0] = create_path_extension(argument_variable[0], argument_variable, argument_count);
-            printf("%s\n", argument_variable[0]);
+            run_command(argument_variable, argument_count, bash_count);
         }
-
-
-
-        // 
-        // printf("%d\n", argument_count);
-
-        // while (i < argument_count)
-        // {
-        //     printf("%s\n", argument_variable[i]);
-        //     i++;
-        // }
-        
+        else
+        {
+            free_double_pointer(argument_variable, argument_count);
+        }
+        bash_count++;
     }
-        
+    free(line);
 }

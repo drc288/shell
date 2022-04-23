@@ -20,7 +20,7 @@ char *create_path_extension(char *cmd, char **argv, int argc)
         if (environment_path == NULL)
         {
             free_double_pointer(argv, argc);
-            perror("Error");
+            perror("./shell");
         }
         // this get the bin execution
         tokenzer = get_route_bin(environment_path, tokenzer);
@@ -28,7 +28,7 @@ char *create_path_extension(char *cmd, char **argv, int argc)
         if (token_buf == NULL)
         {
             free_double_pointer(argv, argc);
-            perror("Error");
+            perror("./shell");
         }
         return token_buf;
     }
@@ -109,6 +109,7 @@ char *validate_access(char *cmd, char*tokenizer ,char **argv, int argc)
 
         if (access(return_token, X_OK) == 0)
         {
+            free(cmd);
             return return_token;
         }
         else
