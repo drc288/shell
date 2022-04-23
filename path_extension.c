@@ -11,7 +11,6 @@
 char *create_path_extension(char *cmd, char **argv, int argc)
 {
     char *environment_path = NULL, *tokenzer = NULL, *token_buf = NULL;
-    int tokenizer_len = 0;
 
     // Validate if the command begin with the charecter '/'
     if (cmd[0] != '/')
@@ -25,23 +24,15 @@ char *create_path_extension(char *cmd, char **argv, int argc)
         }
         // this get the bin execution
         tokenzer = get_route_bin(environment_path, tokenzer);
-        while (tokenzer != NULL)
+        token_buf = validate_access(cmd, tokenzer, argv, argc);
+        if (token_buf == NULL)
         {
-            tokenizer_len = _strlen(tokenzer);
-            token_buf = malloc(sizeof(char) * (tokenizer_len + _strlen(cmd) + 2));
-            if (token_buf == NULL)
-            {
-                free_double_pointer(argv, argc);
-                free(environment_path);
-                perror("Error");
-            }
-            token_buf = validate_access()
+            free_double_pointer(argv, argc);
+            perror("Error");
         }
-        
-
-
+        return token_buf;
     }
-    return "yes";
+    return cmd;
 }
 
 /**
@@ -96,16 +87,36 @@ char *get_route_bin(char *path, char *token)
  *
  * Return: temp if access worked - NULL otherwise
  */
-char *validate_access(char *temp, char *token)
+char *validate_access(char *cmd, char*tokenizer ,char **argv, int argc)
 {
-	temp = _strcpy(temp, token);
-	temp = _strcat(temp, "/");
-	temp = _strcat(temp, command);
-	if (access(temp, X_OK) == 0)
-	{
-		return (temp);
-	}
-	free(temp);
-	temp = NULL;
-	return (temp);
+    int tokenizer_len = 0;
+    char *return_token = NULL;
+
+    while (tokenizer != NULL)
+    {
+        tokenizer_len = _strlen(tokenizer);
+        return_token = malloc(sizeof(char) * (tokenizer_len + _strlen(cmd) + 2));
+        if (return_token == NULL)
+        {
+            free_double_pointer(argv, argc);
+            return NULL;
+        }
+
+        // create the 
+        return_token = _strcpy(return_token, tokenizer);
+        return_token = _strcat(return_token, "/");
+        return_token = _strcat(return_token, cmd);
+
+        if (access(return_token, X_OK) == 0)
+        {
+            return return_token;
+        }
+        else
+        {
+            return_token = NULL;
+        }
+
+        tokenizer = strtok(NULL, ":");
+    }
+    return return_token;
 }

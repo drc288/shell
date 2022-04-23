@@ -41,12 +41,13 @@ void *interactive(char *interactive_str, char *line)
         if (argument_count != 0)
         {
             argument_variable[0] = create_path_extension(argument_variable[0], argument_variable, argument_count);
+            printf("%s\n", argument_variable[0]);
         }
 
 
 
         // 
-        printf("%d\n", argument_count);
+        // printf("%d\n", argument_count);
 
         // while (i < argument_count)
         // {

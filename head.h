@@ -18,6 +18,7 @@ int _strlen(char *s);
 void print_line(char *str);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
+char *_strcat(char *dest, char *src);
 
 
 /* ARGC | ARGV | FREE | EXEC | ERROR */
@@ -27,6 +28,7 @@ char *clean_line(char *line);
 void free_double_pointer(char **argv, int argc);
 void *interactive(char *interactive_str, char *line);
 char *create_path_extension(char *cmd, char **argv, int argc);
+char *validate_access(char *cmd, char*tokenizer ,char **argv, int argc);
 char *get_route_bin(char *path, char *token);
 char *get_path();
 
