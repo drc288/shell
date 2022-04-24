@@ -18,6 +18,7 @@ int main(void)
     else
     {
         // Non-interactive
+        non_interactive(new_line);
     }
 
 

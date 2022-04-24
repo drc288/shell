@@ -114,7 +114,7 @@ char *validate_access(char *cmd, char*tokenizer ,char **argv, int argc)
         }
         else
         {
-            return_token = NULL;
+            return_token = cmd;
         }
 
         tokenizer = strtok(NULL, ":");

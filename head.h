@@ -26,6 +26,7 @@ int _putchar(char c);
 
 
 /* ARGC | ARGV | FREE | EXEC | ERROR */
+void non_interactive(char *line);
 int argc(char *str);
 char **argv(char *line, int argument_count);
 char *clean_line(char *line);
